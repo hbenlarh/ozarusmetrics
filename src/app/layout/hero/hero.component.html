@@ -1,0 +1,99 @@
+<section class="hero">
+  <h1 class="hero__title">
+    AI On-Chain Radar for Solana<br />
+    <span class="hero__subtitle">Scan, Score, Share</span>
+  </h1>
+
+  <p class="hero__description">
+    Advanced AI-powered token analysis for Solana. Get instant reliability scores, 
+    holder insights, and liquidity data to protect your trades.
+  </p>
+
+  <!-- Input + Button -->
+  <form (submit)="scanNow()" class="hero__form" aria-label="Scan Solana Token Address">
+    <div class="hero__input-group">
+      <div class="hero__serach-icon">
+        <img [src]="search_path" alt="Search Icon" />
+      </div>
+      <div class="hero__input">
+        <input
+        type="text"
+        placeholder="Enter Solana token address (e.g., So1111111111111111..)"
+        name="tokenAddress"
+        [(ngModel)]="tokenAddress"
+        (input)="clearError()"
+        class="hero__input"
+        aria-required="true"
+        autocomplete="off"
+        [disabled]="isLoading"
+      />
+      </div>
+      <div class="btn">
+        <button type="submit" class="hero__btn-primary" [disabled]="isLoading">
+          <span *ngIf="!isLoading">Scan Now</span>
+          <span *ngIf="isLoading">Scanning...</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="hero__error" role="alert">
+      <p>{{ errorMessage }}</p>
+      <button type="button" (click)="clearError()" class="hero__error-close" aria-label="Close error message">
+        ×
+      </button>
+    </div>
+    
+    <!-- Debug Section (remove in production) -->
+    <div class="hero__debug" style="margin-top: 20px; padding: 10px; background: #f0f0f0; border-radius: 5px;">
+      <h4>Debug Tools:</h4>
+      <div style="margin-bottom: 10px;">
+        <button (click)="testApiConnection()" [disabled]="isLoading" class="btn btn-secondary" style="margin-right: 5px; margin-bottom: 5px;">
+          Test GET
+        </button>
+        <button (click)="testApiWithPost()" [disabled]="isLoading" class="btn btn-secondary" style="margin-right: 5px; margin-bottom: 5px;">
+          Test POST JSON
+        </button>
+        <button (click)="testApiWithUrlEncoded()" [disabled]="isLoading" class="btn btn-secondary" style="margin-right: 5px; margin-bottom: 5px;">
+          Test POST URL-Encoded
+        </button>
+        <button (click)="testApiWithFormData()" [disabled]="isLoading" class="btn btn-secondary" style="margin-right: 5px; margin-bottom: 5px;">
+          Test POST FormData
+        </button>
+        <button (click)="testApiWithPut()" [disabled]="isLoading" class="btn btn-secondary" style="margin-bottom: 5px;">
+          Test PUT
+        </button>
+      </div>
+      <div *ngIf="debugInfo" style="margin-top: 10px; font-size: 12px; color: #666; max-height: 300px; overflow-y: auto;">
+        <pre>{{ debugInfo }}</pre>
+      </div>
+    </div>
+  </form>
+
+  <!-- Action buttons -->
+  <div class="hero__actions">
+    <button class="hero__btn-secondary">
+      <img [src]="card_gift_card_path" alt="Gift Icon" class="hero__icon_1" />
+      Start Free
+    </button>
+    <button class="hero__btn-secondary">
+      <img [src]="play_card_path" alt="Play Icon" class="hero__icon_2" /> Watch 60s Demo
+    </button>
+  </div>
+
+  <!-- Badges -->
+  <div class="hero__badges">
+    <button class="badge">
+      <img [src]="kyc_path" alt="KYC Icon" class="hero__icon_1" />
+      No KYC
+    </button>
+    <button class="badge" (click)="toggleDarkMode()">
+      <img [src]="dark_mode_path" alt="Dark Mode Icon" class="hero__icon_2" />
+      Dark Mode
+    </button>
+    <button class="badge">
+      <img [src]="gift_purple_path" alt="Gift Purple Icon" class="hero__icon_3" />
+      1st Scan Free
+    </button>
+  </div>
+</section>

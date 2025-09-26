@@ -1,0 +1,15 @@
+<div class="analysis-page">
+  <app-search-header></app-search-header>
+  <app-token-overview 
+    [tokenData]="tokenData" 
+    [tokenAddress]="tokenAddress">
+  </app-token-overview>
+  <app-holders-audit 
+    [tokenData]="tokenData">
+  </app-holders-audit>
+  <app-network-vizualisation 
+    [tokenData]="tokenData"
+    [tokenAddress]="tokenAddress">
+  </app-network-vizualisation>
+  <app-small-footer></app-small-footer>
+</div>

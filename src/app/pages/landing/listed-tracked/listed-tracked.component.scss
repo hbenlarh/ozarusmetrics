@@ -1,0 +1,92 @@
+.listed-tracked {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: #0a0325;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    font-size: 2rem; // scalable
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.25rem;
+  }
+
+  p {
+    color: #bbb;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .slider {
+    overflow: hidden;
+    width: 80%; // prend toute la largeur dispo
+    position: relative;
+  }
+
+  .slide-track {
+    display: flex;
+    flex-wrap: nowrap;
+    animation: scroll 20s linear infinite;
+    width: max-content; // s'adapte au contenu automatiquement
+  }
+
+  .slide {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 1.5rem;
+
+    img {
+      max-height: 56px;
+      height: auto;
+      width: auto;
+      object-fit: contain;
+    }
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(-50%); // faire défiler en continu
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+
+    .slide {
+      margin: 0 0.75rem;
+
+      img {
+        max-height: 40px;
+      }
+    }
+  }
+
+  @media (min-width: 1200px) {
+    h2 {
+      font-size: 2.5rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+    }
+
+    .slide img {
+      max-height: 70px;
+    }
+  }
+}

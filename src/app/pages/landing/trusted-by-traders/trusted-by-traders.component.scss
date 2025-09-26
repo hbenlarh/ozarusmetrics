@@ -1,0 +1,210 @@
+.trusted {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: #0a0325;
+
+  h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 48px;
+    line-height: 48px;
+    letter-spacing: 0%;
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+  }
+
+  p {
+    color: #bbb;
+    margin-bottom: 2rem;
+  }
+
+
+    .top-cards {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      .card {
+        background: linear-gradient(90deg, #1E293B 0%, #334155 100%);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        max-width: 18.7rem;
+        color: white;
+        text-align: left;
+        flex: 1 1 280px;
+
+    .card_header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      margin-bottom: 0.5rem;
+    }
+
+    .info {
+      display: flex;
+      margin-bottom: 1rem;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
+
+      .info_plus {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+        line-height: 21px;
+
+        h4 {
+          margin: 0;
+          font-weight: 700;
+        }
+
+        .handle {
+          color: #bbb;
+          font-size: 0.85rem;
+        }
+      }
+
+      .verif {
+        display: flex;
+        height: fit-content;
+
+        .badge {
+          font-size: 0.75rem;
+          padding: 0.2rem 0.5rem;
+          border-radius: 0.4rem;
+          margin-top: 0.3rem;
+
+          &.verified {
+            background: rgba(20, 184, 166, 0.2);
+            color: rgb(20, 184, 166);
+          }
+          &.expert {
+            background: rgba(6, 182, 212, 0.2);
+            color: rgba(6, 182, 212, 1);
+          }
+          &.whale {
+            background: rgba(59, 130, 246, 0.2);
+            color: rgba(59, 130, 246, 1);
+          }
+        }
+      }
+    }
+
+    .quote {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: #bbb;
+      font-family: 'Inter', sans-serif;
+
+      strong {
+        color: #22d3ee;
+      }
+    }
+  }
+
+  /* 📱 Mobile */
+  @media (max-width: 768px) {
+    gap: 1rem;
+
+    .card {
+      width: 100%;   // ✅ prend toute la largeur
+      max-width: 100%;
+    }
+  }
+
+  /* 💻 Large desktop */
+  @media (min-width: 1200px) {
+    .card {
+      width: 340px;  // ✅ un peu plus large sur grand écran
+    }
+  }
+}
+
+
+.tweets {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.tweet {
+  background: rgba(26, 26, 26, 1);
+  color: white;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  width: 233px;
+  font-size: 0.9rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tweet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.tweet-header .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.tweet-user {
+  flex: 1;
+  margin-left: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  line-height: 20px;
+}
+
+.tweet-user .handle {
+  font-weight: bold;
+}
+
+.tweet-user .time {
+  color: #aaa;
+  font-size: 0.8rem;
+}
+
+.twitter-icon {
+  color: #1da1f2;
+  font-size: 1rem;
+}
+
+.tweet-footer {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+.tweet-footer i {
+  margin-right: 0.35rem;
+}
+
+.hashtag {
+  color: #1da1f2;
+}
+
+}

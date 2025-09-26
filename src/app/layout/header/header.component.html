@@ -1,0 +1,39 @@
+<header class="header">
+  <div class="header__container">
+    <!-- Logo -->
+    <div class="header__logo" aria-label="Ozarus logo">
+      <img [src]="logo" alt="OZARUS LOGO" />
+    </div>
+
+    <!-- Navigation -->
+    <nav
+      class="header__nav"
+      [ngClass]="{ open: isMenuOpen }"
+      role="navigation"
+      aria-label="Primary Navigation"
+    >
+      <a routerLink="/" fragment="features" class="header__link">Features</a>
+      <a routerLink="/" fragment="how-it-works" class="header__link">How It Works</a>
+      <a routerLink="/testimonials" class="header__link">Testimonials</a>
+      <a href="https://docs.ozarus.io" target="_blank" rel="noopener" class="header__link">Docs</a>
+    </nav>
+
+    <!-- Login (desktop only) -->
+    <div class="header__login">
+      <a href="/login" class="header__link">Login</a>
+      <a href="/start-free" class="header__button">Start Free</a>
+    </div>
+
+    <!-- Burger -->
+    <button
+      class="header__burger"
+      aria-label="Toggle menu"
+      [attr.aria-expanded]="isMenuOpen"
+      (click)="toggleMenu()"
+    >
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+  </div>
+</header>

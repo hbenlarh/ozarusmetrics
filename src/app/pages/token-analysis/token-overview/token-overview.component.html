@@ -1,0 +1,88 @@
+<div class="token-overview">
+  <!-- Header Card -->
+  <div class="token-overview__header">
+    <div class="token-info">
+      <img [src]='tokenImage' alt="Token Logo" class="token-logo" />
+      <div class="token-meta">
+        <h2 class="token-name">{{ tokenName }} ({{ tokenSymbol }})</h2>
+        <div class="security-rating">
+          <span>Security Rating:</span>
+          <div class="progress">
+            <div class="progress-bar" [style.width.%]="100 - riskScore"></div>
+          </div>
+          <span class="percent">{{ (100 - riskScore).toFixed(1) }}%</span>
+        </div>
+        <div class="addresses">
+          <div class="address-box">
+            <span>Contract Address:</span>
+            <span class="value">
+              <p>{{ tokenAddress | slice:0:8 }}...{{ tokenAddress | slice:-8 }}</p>
+              <img [src]='copy_icon' alt="Copy" class="copy-icon" />
+            </span>
+          </div>
+          <div class="address-box">
+            <span>Creator:</span>
+            <span class="value">
+              <p>{{ tokenData?.basic_info?.creator?.address | slice:0:8 }}...{{ tokenData?.basic_info?.creator?.address | slice:-8 }}</p>
+              <img [src]='copy_icon' alt="Copy" class="copy-icon" />
+            </span>
+          </div>
+        </div>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        />
+        <div class="actions">
+          <button class="btn btn-purple">
+            <img [src]='reload' alt="Copy" class="copy-icon" /> Re-scan
+          </button>
+          <button class="btn btn-dark">
+            <i class="fa-solid fa-bell"></i> <span class="action_text">Set Alert</span>
+          </button>
+          <button class="btn btn-dark">
+            <i class="fa-solid fa-bookmark"></i> <span class="action_text">Add to Watchlist</span>
+          </button>
+          <button class="btn btn-dark">
+            <i class="fa-solid fa-share"></i> <span class="action_text">Share</span>
+          </button>
+          <button class="btn btn-dark">
+           <img [src]='pdf' alt="Copy" class="copy-icon" /> <span class="action_text">Export PDF</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-title">
+        <p>Market Cap</p>
+        <img [src]='market_cap' alt="Market Cap" />
+      </div>
+      <p class="stat-value blue">${{ marketCap | number:'1.0-2' }}</p>
+      <p class="stat-sub green">Small Cap</p>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-title">
+        <p>Liquidity</p>
+        <img [src]='liquidity' alt="Liquidity" />
+      </div>
+      <p class="stat-value purple">${{ liquidityAmount | number:'1.0-2' }}</p>
+      <p class="stat-sub">Healthy Liquidity</p>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-title">
+        <p>Top 100 Control</p>
+        <img [src]='control' alt="Top 100 Control" />
+      </div>
+      <p class="stat-value yellow">{{ tokenData?.holders?.top_hundred_per | number:'1.1-1' }}%</p>
+      <p class="stat-sub" [class.green]="tokenData?.holders?.top_hundred_per < 50" [class.red]="tokenData?.holders?.top_hundred_per > 80">
+        {{ tokenData?.holders?.top_hundred_per > 80 ? 'High Risk' : tokenData?.holders?.top_hundred_per > 50 ? 'Medium Risk' : 'Low Risk' }}
+      </p>
+    </div>
+  </div>
+</div>

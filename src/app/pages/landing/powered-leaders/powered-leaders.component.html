@@ -1,0 +1,11 @@
+<section class="powered-leaders">
+  <h2>Powered by Industry Leaders</h2>
+  <p>Deep integrations with the Solana ecosystem</p>
+
+  <div class="partners-grid">
+    <div class="partner-card" *ngFor="let partner of partners">
+      <img [src]="partner.logo" [alt]="partner.name" />
+      <span>{{ partner.name }}</span>
+    </div>
+  </div>
+</section>

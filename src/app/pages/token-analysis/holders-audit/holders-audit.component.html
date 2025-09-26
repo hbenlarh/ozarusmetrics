@@ -1,0 +1,82 @@
+<div class="holders-audit">
+
+  <!-- Holders Distribution -->
+  <div class="card holders">
+    <div class="card-header">
+      <h3>Holders Distribution</h3>
+      <span class="tag" [class.green]="concentrationClass === 'green'" [class.yellow]="concentrationClass === 'yellow'" [class.red]="concentrationClass === 'red'">
+        {{ concentrationRisk }}
+      </span>
+    </div>
+
+    <div class="holders-content">
+      <!-- Left: Pie chart with stats -->
+      <div class="chart">
+        <div class="holder-chart-container">
+          <canvas #holderCanvas class="canvas"></canvas>
+        </div>
+        <!-- Stats overlay -->
+        <div class="chart-stats">
+          <div class="stat-row">
+            <span class="stat-label">Total Holders:</span>
+            <span class="stat-value">{{ totalHolders | number }}</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Top 10 Control:</span>
+            <span class="stat-value" [class]="concentrationClass">{{ topTenPercentage | number:'1.1-1' }}%</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Top 100 Control:</span>
+            <span class="stat-value">{{ topHundredPercentage | number:'1.1-1' }}%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Top 10 Holders -->
+      <div class="top-holders">
+        <h4>Top 10 Holders</h4>
+        <table>
+          <tr *ngFor="let holder of topTenHolders; let i = index">
+            <td class="number_ranking">{{ i + 1 }}</td>
+            <td>{{ holder.address | slice:0:8 }}...{{ holder.address | slice:-8 }}</td>
+            <td>{{ holder.percentage | number:'1.2-2' }}%</td>
+            <td class="value">{{ holder.balance | number:'1.0-2' }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Security Audit -->
+  <div class="card audit">
+    <h3>Security Audit</h3>
+
+    <div class="audit-stats">
+      <div class="stat" [class.green]="mintAuthorityDisabled" [class.red]="!mintAuthorityDisabled">
+        <div class="big">{{ mintAuthorityDisabled ? 'Disabled' : 'Enabled' }}</div>
+        <div class="label">Mint Authority</div>
+      </div>
+      <div class="stat" [class.green]="!freezeAuthority" [class.red]="freezeAuthority">
+        <div class="big">{{ freezeAuthority ? 'Enabled' : 'Disabled' }}</div>
+        <div class="label">Freeze Authority</div>
+      </div>
+      <div class="stat" [class.green]="concentrationClass === 'green'" [class.yellow]="concentrationClass === 'yellow'" [class.red]="concentrationClass === 'red'">
+        <div class="big">{{ topTenPercentage | number:'1.1-1' }}%</div>
+        <div class="label">Top 10 Control</div>
+      </div>
+      <div class="stat blue">
+        <div class="big">{{ totalHolders | number }}</div>
+        <div class="label">Total Holders</div>
+      </div>
+    </div>
+
+    <ul class="audit-list">
+      <li *ngFor="let message of securityMessages">
+        <i class="fa-solid" [class]="getMessageIconClass(message)"></i>
+        {{ cleanMessage(message) }}
+      </li>
+    </ul>
+
+  </div>
+
+</div>

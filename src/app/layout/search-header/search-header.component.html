@@ -1,0 +1,42 @@
+<header class="search-header">
+  <div class="search-header__container">
+    <!-- Logo -->
+    <div class="search-header__logo">
+      <img [src]='logo' alt="OZARUS LOGO">
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-header__search">
+      <div class="search_form">
+        <i class="fa-solid fa-search" style="color: rgba(173, 174, 188, 1);"></i>
+        <input
+          type="text"
+          placeholder="Enter contract address..."
+          [(ngModel)]="contractAddress"
+          (input)="clearError()"
+        />
+      </div>
+      <div class="btn-form">
+        <button 
+          (click)="onScan()" 
+          [disabled]="isLoading"
+          [class.loading]="isLoading">
+          <span *ngIf="!isLoading">Scan</span>
+          <span *ngIf="isLoading">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            Scanning...
+          </span>
+        </button>
+      </div>
+      
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="error-message">
+        <i class="fa-solid fa-exclamation-triangle"></i>
+        {{ errorMessage }}
+        <button (click)="clearError()" class="close-error">
+          <i class="fa-solid fa-times"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
