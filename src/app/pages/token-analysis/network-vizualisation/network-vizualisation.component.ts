@@ -36,7 +36,6 @@ export class NetworkVizualisationComponent implements OnInit {
     const fullUrl = `${baseUrl}?${params.toString()}`;
     this.bubbleMapsUrl = this.sanitizer.bypassSecurityTrustResourceUrl(fullUrl);
     
-    console.log('BubbleMaps URL generated:', fullUrl);
   }
 
   generateHelioFunUrl() {
@@ -45,7 +44,6 @@ export class NetworkVizualisationComponent implements OnInit {
     const fullUrl = `https://helio.fun/${address}`;
     this.helioFunUrl = this.sanitizer.bypassSecurityTrustResourceUrl(fullUrl);
     
-    console.log('Helio.fun URL generated:', fullUrl);
   }
 
   openBubbleMaps() {

@@ -22,9 +22,7 @@ export class SearchHeaderComponent {
     private tokenScanner: TokenScannerService,
     private router: Router,
     private tokenDataService: TokenDataService
-  ) {
-    console.log('SearchHeader Component - TokenDataService injected:', this.tokenDataService);
-  }
+  ) {}
 
   onScan() {
     if (!this.contractAddress.trim()) {
@@ -43,23 +41,13 @@ export class SearchHeaderComponent {
     this.tokenScanner.scanToken(this.contractAddress.trim()).subscribe({
       next: (response: TokenScanResponse) => {
         this.isLoading = false;
-        console.log('SearchHeader - Full API Response:', response);
-        console.log('SearchHeader - Response success:', response.success);
-        console.log('SearchHeader - Response data:', response.data);
 
         if (response.success) {
-          console.log('SearchHeader - API Response success, storing data:', response.data);
-          console.log('SearchHeader - TokenDataService available:', !!this.tokenDataService);
 
           // Store data in service
           this.tokenDataService.setTokenData(response.data);
           this.tokenDataService.setTokenAddress(this.contractAddress.trim());
 
-          console.log('SearchHeader - Data stored, navigating to:', `/token-analysis/${this.contractAddress.trim()}`);
-          console.log('SearchHeader - Verifying data after storage:', {
-            tokenData: this.tokenDataService.getTokenData(),
-            tokenAddress: this.tokenDataService.getTokenAddress()
-          });
 
           // Small delay to ensure data is properly set
           setTimeout(() => {
@@ -68,18 +56,11 @@ export class SearchHeaderComponent {
           }, 100);
         } else {
           const errorMsg = response.error || response.message || 'Token scan failed';
-          console.error('API returned error:', response);
           this.errorMessage = `API Error: ${errorMsg}`;
         }
       },
       error: (error) => {
         this.isLoading = false;
-        console.error('HTTP Error Details:', {
-          status: error.status,
-          statusText: error.statusText,
-          message: error.message,
-          error: error.error
-        });
 
         let errorMessage = 'An error occurred while scanning the token';
 

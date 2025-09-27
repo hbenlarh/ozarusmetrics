@@ -30,11 +30,6 @@ export class TokenScannerService {
       'Accept': 'application/json'
     });
 
-    console.log('Sending request to API:', {
-      url: `${this.API_BASE_URL}${this.SCAN_ENDPOINT}`,
-      requestBody: requestBody,
-      headers: headers
-    });
 
     return this.http.post<any>(
       `${this.API_BASE_URL}${this.SCAN_ENDPOINT}`,
@@ -42,7 +37,6 @@ export class TokenScannerService {
       { headers }
     ).pipe(
       map((response: any) => {
-        console.log('API Response:', response);
         
         // Validate response structure
         if (!response) {

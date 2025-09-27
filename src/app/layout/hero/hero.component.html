@@ -44,30 +44,6 @@
       </button>
     </div>
     
-    <!-- Debug Section (remove in production) -->
-    <div class="hero__debug" style="margin-top: 20px; padding: 10px; background: #f0f0f0; border-radius: 5px;">
-      <h4>Debug Tools:</h4>
-      <div style="margin-bottom: 10px;">
-        <button (click)="testApiConnection()" [disabled]="isLoading" class="btn btn-secondary" style="margin-right: 5px; margin-bottom: 5px;">
-          Test GET
-        </button>
-        <button (click)="testApiWithPost()" [disabled]="isLoading" class="btn btn-secondary" style="margin-right: 5px; margin-bottom: 5px;">
-          Test POST JSON
-        </button>
-        <button (click)="testApiWithUrlEncoded()" [disabled]="isLoading" class="btn btn-secondary" style="margin-right: 5px; margin-bottom: 5px;">
-          Test POST URL-Encoded
-        </button>
-        <button (click)="testApiWithFormData()" [disabled]="isLoading" class="btn btn-secondary" style="margin-right: 5px; margin-bottom: 5px;">
-          Test POST FormData
-        </button>
-        <button (click)="testApiWithPut()" [disabled]="isLoading" class="btn btn-secondary" style="margin-bottom: 5px;">
-          Test PUT
-        </button>
-      </div>
-      <div *ngIf="debugInfo" style="margin-top: 10px; font-size: 12px; color: #666; max-height: 300px; overflow-y: auto;">
-        <pre>{{ debugInfo }}</pre>
-      </div>
-    </div>
   </form>
 
   <!-- Action buttons -->

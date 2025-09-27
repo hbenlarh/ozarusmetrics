@@ -16,27 +16,21 @@ export class TokenDataService {
   public tokenAddress$ = this.tokenAddressSubject.asObservable();
 
   setTokenData(data: any) {
-    console.log('TokenDataService - Setting token data:', data);
     TokenDataService._tokenData = data;
     this.tokenDataSubject.next(data);
   }
 
   setTokenAddress(address: string) {
-    console.log('TokenDataService - Setting token address:', address);
     TokenDataService._tokenAddress = address;
     this.tokenAddressSubject.next(address);
   }
 
   getTokenData() {
-    const data = this.tokenDataSubject.value || TokenDataService._tokenData;
-    console.log('TokenDataService - Getting token data:', data);
-    return data;
+    return this.tokenDataSubject.value || TokenDataService._tokenData;
   }
 
   getTokenAddress() {
-    const address = this.tokenAddressSubject.value || TokenDataService._tokenAddress;
-    console.log('TokenDataService - Getting token address:', address);
-    return address;
+    return this.tokenAddressSubject.value || TokenDataService._tokenAddress;
   }
 
   clearData() {

@@ -10,12 +10,29 @@
     </div>
 
     <div class="holders-content">
-      <!-- Left: Pie chart with stats -->
-      <div class="chart">
-        <div class="holder-chart-container">
-          <canvas #holderCanvas class="canvas"></canvas>
+      <!-- Left: Chart with custom legend -->
+      <div class="chart-section">
+        <div class="chart-container" *ngIf="isBrowser">
+          <canvas 
+            baseChart 
+            [data]="doughnutChartData" 
+            [type]="doughnutChartType" 
+            [options]="chartOptions" 
+            (chartHover)="onChartHover($event)">
+          </canvas>
         </div>
-        <!-- Stats overlay -->
+        <div class="chart-container" *ngIf="!isBrowser">
+          <div class="chart-placeholder">
+            <p>Chart loading...</p>
+          </div>
+        </div>
+        
+     
+      </div>
+
+      <!-- Right: Stats and Top 10 Holders -->
+      <div class="stats-section">
+        <!-- Stats -->
         <div class="chart-stats">
           <div class="stat-row">
             <span class="stat-label">Total Holders:</span>
@@ -30,19 +47,20 @@
             <span class="stat-value">{{ topHundredPercentage | number:'1.1-1' }}%</span>
           </div>
         </div>
-      </div>
 
-      <!-- Right: Top 10 Holders -->
-      <div class="top-holders">
-        <h4>Top 10 Holders</h4>
-        <table>
-          <tr *ngFor="let holder of topTenHolders; let i = index">
-            <td class="number_ranking">{{ i + 1 }}</td>
-            <td>{{ holder.address | slice:0:8 }}...{{ holder.address | slice:-8 }}</td>
-            <td>{{ holder.percentage | number:'1.2-2' }}%</td>
-            <td class="value">{{ holder.balance | number:'1.0-2' }}</td>
-          </tr>
-        </table>
+        <!-- Top 10 Holders Table -->
+        <div class="top-holders">
+          <h4>Top 10 Holders</h4>
+          <table>
+            <tr *ngFor="let holder of topTenHolders; let i = index">
+              <td class="number_ranking">{{ i + 1 }}</td>
+              <td>{{ holder.address | slice:0:8 }}...{{ holder.address | slice:-8 }}</td>
+              <td>{{ holder.percentage | number:'1.2-2' }}%</td>
+              <td class="value">{{ holder.balance | number:'1.0-2' }}</td>
+            </tr>
+          </table>
+        </div>
+
       </div>
     </div>
   </div>

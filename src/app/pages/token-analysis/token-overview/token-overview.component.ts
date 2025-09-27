@@ -20,9 +20,6 @@ export class TokenOverviewComponent {
   control = "assets/icon/control.svg";
 
   get tokenName(): string {
-    console.log('TokenOverview - tokenData:', this.tokenData);
-    console.log('TokenOverview - basic_info:', this.tokenData?.basic_info);
-    console.log('TokenOverview - name:', this.tokenData?.basic_info?.name);
     return this.tokenData?.basic_info?.name || 'Unknown Token';
   }
 

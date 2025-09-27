@@ -24,27 +24,22 @@ export class TokenAnalysisComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private tokenDataService: TokenDataService
-  ) {
-    console.log('TokenAnalysis Component - TokenDataService injected:', this.tokenDataService);
-  }
+  ) {}
 
   ngOnInit() {
     // Get token address from route parameter
     this.route.params.subscribe(params => {
       this.tokenAddress = params['tokenAddress'] || '';
-      console.log('Token Address from URL:', this.tokenAddress);
       this.loadTokenData();
     });
 
     // Subscribe to token data changes
     const tokenDataSubscription = this.tokenDataService.tokenData$.subscribe(data => {
-      console.log('TokenAnalysis - Token data subscription received:', data);
       this.tokenData = data;
     });
 
     // Subscribe to token address changes
     const tokenAddressSubscription = this.tokenDataService.tokenAddress$.subscribe(address => {
-      console.log('TokenAnalysis - Token address subscription received:', address);
       this.tokenAddress = address || this.tokenAddress;
     });
 
@@ -56,12 +51,9 @@ export class TokenAnalysisComponent implements OnInit, OnDestroy {
 
   private loadTokenData() {
     // Get data from service
-    console.log('TokenAnalysis - TokenDataService available:', !!this.tokenDataService);
     this.tokenData = this.tokenDataService.getTokenData();
     this.tokenAddress = this.tokenDataService.getTokenAddress() || this.tokenAddress;
     
-    console.log('Token Analysis - Received data from service:', this.tokenData);
-    console.log('Token Analysis - Token address from service:', this.tokenAddress);
     
     // If no data in service, try to get from router state (fallback)
     if (!this.tokenData) {
@@ -69,7 +61,6 @@ export class TokenAnalysisComponent implements OnInit, OnDestroy {
       if (navigation?.extras?.state) {
         this.tokenData = navigation.extras.state['tokenData'];
         this.tokenAddress = navigation.extras.state['tokenAddress'] || this.tokenAddress;
-        console.log('Token Analysis - Fallback from router state:', this.tokenData);
       }
     }
   }
