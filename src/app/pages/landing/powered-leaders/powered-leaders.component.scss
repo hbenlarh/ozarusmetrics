@@ -22,7 +22,15 @@
     text-align: center;
     // max-width: 600px;
   }
+  a
+  {
+    text-decoration: unset;
+  }
 
+  .slick-dots li button::before
+  {
+    color: white;
+  }
   .partners-grid {
     // display: flex;
     // flex-wrap: wrap;
@@ -76,8 +84,9 @@
       height: 130px;
 
       img {
-        max-width: 48px;
-        max-height: 48px;
+       width: 100%;
+       height: 100%;
+       object-fit: contain;
       }
 
       span {
@@ -100,10 +109,10 @@
       width: 180px;
       height: 160px;
 
-      img {
-        max-width: 150px;
-        max-height: 150px;
-      }
+      // img {
+      //   max-width: 150px;
+      //   max-height: 150px;
+      // }
     }
   }
 }

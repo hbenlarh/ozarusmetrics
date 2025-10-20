@@ -3,29 +3,18 @@
   <p>Trusted and featured across leading media outlets</p>
 
   <div class="logos">
-    <div class="logo-card">
-      <img src="assets/images/2m.png" alt="2M" />
-      <span>2M</span>
-    </div>
-    <div class="logo-card">
-      <img src="assets/images/medi1.png" alt="Medi 1" />
-      <span>Medi 1</span>
-    </div>
-    <div class="logo-card">
-      <img src="assets/images/jaune.png" alt="Phantom" />
-      <span>Phantom</span>
-    </div>
-    <div class="logo-card">
-      <img src="assets/images/redit.png" alt="Reddit" />
-      <span>Reddit</span>
-    </div>
-    <div class="logo-card">
-      <img src="assets/images/jupiter.png" alt="Jupiter" />
-      <span>Jupiter</span>
-    </div>
-    <div class="logo-card">
-      <img src="assets/images/bubble_maps.png" alt="BubbleMaps" />
-      <span>BubbleMaps</span>
-    </div>
+
+    <ngx-slick-carousel class="" [config]="slideConfig">
+      <div ngxSlickItem *ngFor="let seen of seens" class="partner-card">
+        <a href="{{seen.link}}" target="_blank">
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="{{seen.logo}}" alt="{{seen.name}}" />
+            </div>
+            <span>{{seen.name}}</span>
+          </div>
+        </a>
+      </div>
+    </ngx-slick-carousel>
   </div>
 </section>
