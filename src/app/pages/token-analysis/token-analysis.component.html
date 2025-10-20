@@ -1,15 +1,33 @@
 <div class="analysis-page">
   <app-search-header></app-search-header>
-  <app-token-overview 
-    [tokenData]="tokenData" 
-    [tokenAddress]="tokenAddress">
-  </app-token-overview>
-  <app-holders-audit 
-    [tokenData]="tokenData">
-  </app-holders-audit>
-  <app-network-vizualisation 
-    [tokenData]="tokenData"
-    [tokenAddress]="tokenAddress">
-  </app-network-vizualisation>
+  
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Loading token analysis...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error && !isLoading" class="error-container">
+    <h3>Error</h3>
+    <p>{{ error }}</p>
+    <button (click)="fetchTokenDataFromAPI()" class="retry-button">Retry</button>
+  </div>
+
+  <!-- Token Analysis Content - Show when we have data and not loading/error -->
+  <div *ngIf="tokenData && !isLoading && !error">
+    <app-token-overview 
+      [tokenData]="tokenData" 
+      [tokenAddress]="tokenAddress">
+    </app-token-overview>
+    <app-holders-audit 
+      [tokenData]="tokenData">
+    </app-holders-audit>
+    <app-network-vizualisation 
+      [tokenData]="tokenData"
+      [tokenAddress]="tokenAddress">
+    </app-network-vizualisation>
+  </div>
+
   <app-small-footer></app-small-footer>
 </div>

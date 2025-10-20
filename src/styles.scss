@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+.slick-next
+{
+  right: 0px!important;
+  z-index: 99;
+}
+.slick-prev {
+  left: 0px!important;
+  z-index: 99;
+}

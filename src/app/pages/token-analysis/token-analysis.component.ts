@@ -8,22 +8,27 @@ import { NetworkVizualisationComponent } from "./network-vizualisation/network-v
 import { SmallFooterComponent } from "../../layout/small-footer/small-footer.component";
 import { TokenScanResponse } from '../../services/token-scan.interface';
 import { TokenDataService } from '../../services/token-data.service';
+import { TokenScannerService } from '../../services/token-scanner.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-token-analysis',
-  imports: [SearchHeaderComponent, TokenOverviewComponent, HoldersAuditComponent, NetworkVizualisationComponent, SmallFooterComponent],
+  imports: [SearchHeaderComponent, TokenOverviewComponent, HoldersAuditComponent, NetworkVizualisationComponent, SmallFooterComponent, CommonModule],
   templateUrl: './token-analysis.component.html',
   styleUrl: './token-analysis.component.scss'
 })
 export class TokenAnalysisComponent implements OnInit, OnDestroy {
   tokenData: any = null;
   tokenAddress: string = '';
+  isLoading: boolean = false;
+  error: string | null = null;
   private subscriptions: Subscription[] = [];
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private tokenDataService: TokenDataService
+    private tokenDataService: TokenDataService,
+    private tokenScannerService: TokenScannerService
   ) {}
 
   ngOnInit() {
@@ -44,16 +49,16 @@ export class TokenAnalysisComponent implements OnInit, OnDestroy {
     });
 
     this.subscriptions.push(tokenDataSubscription, tokenAddressSubscription);
-
-    // Load initial data
-    this.loadTokenData();
   }
 
   private loadTokenData() {
-    // Get data from service
+    // Reset states
+    this.isLoading = false;
+    this.error = null;
+    
+    // First try to get data from service (if user navigated from scan)
     this.tokenData = this.tokenDataService.getTokenData();
     this.tokenAddress = this.tokenDataService.getTokenAddress() || this.tokenAddress;
-    
     
     // If no data in service, try to get from router state (fallback)
     if (!this.tokenData) {
@@ -63,6 +68,42 @@ export class TokenAnalysisComponent implements OnInit, OnDestroy {
         this.tokenAddress = navigation.extras.state['tokenAddress'] || this.tokenAddress;
       }
     }
+
+    // If still no data and we have a token address, fetch from API
+    if (!this.tokenData && this.tokenAddress) {
+      this.fetchTokenDataFromAPI();
+    }
+  }
+
+  fetchTokenDataFromAPI() {
+    if (!this.tokenAddress) {
+      this.error = 'No token address provided';
+      return;
+    }
+
+    this.isLoading = true;
+    this.error = null;
+
+    const scanSubscription = this.tokenScannerService.scanToken(this.tokenAddress).subscribe({
+      next: (response: TokenScanResponse) => {
+        if (response.success && response.data) {
+          this.tokenData = response.data;
+          // Store in service for consistency
+          this.tokenDataService.setTokenData(response.data);
+          this.tokenDataService.setTokenAddress(this.tokenAddress);
+        } else {
+          this.error = 'Failed to fetch token data';
+        }
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Error fetching token data:', error);
+        this.error = error.message || 'Failed to fetch token data';
+        this.isLoading = false;
+      }
+    });
+
+    this.subscriptions.push(scanSubscription);
   }
 
   ngOnDestroy() {

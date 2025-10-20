@@ -1,0 +1,123 @@
+.tokenomics-page {
+  background: rgba(14, 9, 51, 1);
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  padding: 2rem 0;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #9ca3af;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+  }
+
+  .bloc1 {
+    background: #111132;
+    border: 1px solid rgba(55, 65, 81, 1);
+    border-radius: 0.75rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+
+  .chart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+
+    .chart-placeholder {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.75rem;
+      padding: 2rem;
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+
+      h3 {
+        color: #38bdf8;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        color: #9ca3af;
+        margin: 0;
+      }
+    }
+  }
+
+  .title {
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid #38bdf8;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(56, 189, 248, 0.2);
+      transform: translateY(-2px);
+    }
+
+    p {
+      color: #38bdf8;
+      font-weight: 500;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+  }
+
+  .details {
+    .row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .row {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .details .row {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+

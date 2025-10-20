@@ -5,11 +5,15 @@
 <div class="slider">
   <div class="slide-track">
     <div class="slide" *ngFor="let logo of logos">
-      <img [src]="logo" alt="Logo" />
+      <a [href]="logo.url" target="_blank" rel="noopener noreferrer">
+        <img [src]="logo.src" [alt]="logo.alt" />
+      </a>
     </div>
     <!-- Clone -->
     <div class="slide" *ngFor="let logo of logos">
-      <img [src]="logo" alt="Logo" />
+      <a [href]="logo.url" target="_blank" rel="noopener noreferrer">
+        <img [src]="logo.src" [alt]="logo.alt" />
+      </a>
     </div>
   </div>
 </div>

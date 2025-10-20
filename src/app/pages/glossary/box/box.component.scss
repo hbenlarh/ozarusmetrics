@@ -1,0 +1,82 @@
+.box {
+  background: #111132;
+  border: 1px solid rgba(55, 65, 81, 1);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s ease;
+  min-height: 200px;
+  justify-content: center;
+
+  &:hover {
+    border-color: #38bdf8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
+  }
+
+  .icon {
+    margin-bottom: 1rem;
+    
+    i {
+      font-size: 2rem;
+      color: #38bdf8;
+    }
+  }
+
+  .text {
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      line-height: 1.5;
+      margin: 0;
+    }
+  }
+
+  &.minheight {
+    min-height: 201px;
+  }
+
+  // Percentage indicators for tokenomics
+  ._25:before {
+    content: "25%";
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #38bdf8;
+  }
+
+  ._15:before {
+    content: "15%";
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #38bdf8;
+  }
+
+  ._20:before {
+    content: "20%";
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #38bdf8;
+  }
+
+  ._10:before {
+    content: "10%";
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #38bdf8;
+  }
+}
+

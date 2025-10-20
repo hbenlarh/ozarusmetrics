@@ -29,7 +29,7 @@
   .slide-track {
     display: flex;
     flex-wrap: nowrap;
-    animation: scroll 20s linear infinite;
+    animation: scroll 60s linear infinite;
     width: max-content; // s'adapte au contenu automatiquement
   }
 
@@ -40,11 +40,25 @@
     justify-content: center;
     margin: 0 1.5rem;
 
-    img {
-      max-height: 56px;
-      height: auto;
-      width: auto;
-      object-fit: contain;
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+        opacity: 0.8;
+      }
+
+      img {
+        max-height: 56px;
+        height: auto;
+        width: auto;
+        object-fit: contain;
+        display: block;
+      }
     }
   }
 
@@ -70,7 +84,7 @@
     .slide {
       margin: 0 0.75rem;
 
-      img {
+      a img {
         max-height: 40px;
       }
     }
@@ -85,7 +99,7 @@
       font-size: 1.1rem;
     }
 
-    .slide img {
+    .slide a img {
       max-height: 70px;
     }
   }

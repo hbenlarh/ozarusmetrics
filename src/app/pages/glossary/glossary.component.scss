@@ -1,0 +1,58 @@
+.glossary-page {
+  background: rgba(14, 9, 51, 1);
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  padding: 2rem 0;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: #38bdf8;
+  }
+
+  p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #9ca3af;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .row {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+

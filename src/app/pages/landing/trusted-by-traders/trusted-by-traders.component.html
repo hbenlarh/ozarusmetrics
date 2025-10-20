@@ -5,8 +5,8 @@
   </p>
 
   <!-- Cards du haut -->
-  <div class="top-cards">
-    <!-- Card 1 -->
+  <!-- <div class="top-cards">
+   
     <div class="card">
       <div class="card_header">
         <img src="assets/images/traders/1.png" alt="Alex Chen" class="avatar" />
@@ -31,7 +31,6 @@
       </div>
     </div>
 
-    <!-- Card 2 -->
     <div class="card">
       <div class="card_header">
         <img src="assets/images/traders/2.png" alt="Sarah Kim" class="avatar" />
@@ -55,7 +54,6 @@
       </div>
     </div>
 
-    <!-- Card 3 -->
     <div class="card">
       <div class="card_header">
         <img src="assets/images/traders/3.png" alt="Mike Rodriguez" class="avatar" />
@@ -78,87 +76,31 @@
         <strong>96.8%</strong>
       </div>
     </div>
-  </div>
-
-  <!-- Tweets en bas -->
-  <div class="tweets">
-  <!-- Tweet 1 -->
-  <div class="tweet">
-      <div class="tweet-header">
-        <img src="assets/images/traders/4.png" alt="CryptoWhale avatar" class="avatar" />
-        <div class="tweet-user">
-          <span class="handle">&#64;CryptoWhale</span>
-          <span class="time">2h ago</span>
+  </div> -->
+</section>
+<section class="trusted">
+  <ngx-slick-carousel [config]="slideConfig">
+    <div ngxSlickItem *ngFor="let avi of tweets" class="tweets">
+      <a href="{{avi.url}}" target="_blank" class="tweet-link">
+        <div class="tweet">
+          <div class="tweet-header">
+            <img src="{{avi.avatar}}" alt="Crypto Vertex avatar" class="avatar" />
+            <div class="tweet-user">
+              <span class="name">{{avi.name}}</span>
+              <span class="handle">{{avi.handle}}</span>
+            </div>
+            <i class="fa-brands fa-x-twitter twitter-icon"></i>
+          </div>
+          <p>
+            {{avi.text}}
+          </p>
+          <!-- <div class="tweet-footer">
+            <span><i class="fa-solid fa-retweet"></i> {{avi.retweets}}</span>
+            <span><i class="fa-solid fa-heart"></i> {{avi.likes}}</span>
+          </div> -->
         </div>
-        <i class="fa-brands fa-twitter twitter-icon"></i>
-      </div>
-      <p>
-        Just discovered this Solana token scanner. The AI analysis is spot on! 🎯
-        <span class="hashtag">#DeFiRadar</span>
-      </p>
-      <div class="tweet-footer">
-        <span><i class="fa-solid fa-retweet"></i> 127</span>
-        <span><i class="fa-solid fa-heart"></i> 342</span>
-      </div>
+      </a>
     </div>
-
-    <!-- Tweet 2 -->
-    <div class="tweet">
-      <div class="tweet-header">
-        <img src="assets/images/traders/5.png" alt="DeFiQueen avatar" class="avatar" />
-        <div class="tweet-user">
-          <span class="handle">&#64;DeFiQueen</span>
-          <span class="time">4h ago</span>
-        </div>
-        <i class="fa-brands fa-twitter twitter-icon"></i>
-      </div>
-      <p>
-        This tool literally saved me from a $10k loss. The holder analysis revealed suspicious patterns!
-      </p>
-      <div class="tweet-footer">
-        <span><i class="fa-solid fa-retweet"></i> 88</span>
-        <span><i class="fa-solid fa-heart"></i> 201</span>
-
-      </div>
-    </div>
-
-    <!-- Tweet 3 -->
-    <div class="tweet">
-      <div class="tweet-header">
-        <img src="assets/images/traders/6.png" alt="SolanaTrader avatar" class="avatar" />
-        <div class="tweet-user">
-          <span class="handle">&#64;SolanaTrader</span>
-          <span class="time">5h ago</span>
-        </div>
-        <i class="fa-brands fa-twitter twitter-icon"></i>
-      </div>
-      <p>
-        The bubble map feature is incredible! Finally can visualize wallet connections easily.
-      </p>
-      <div class="tweet-footer">
-        <span><i class="fa-solid fa-retweet"></i> 143</span>
-        <span><i class="fa-solid fa-heart"></i> 289</span>
-      </div>
-    </div>
-
-    <!-- Tweet 4 -->
-    <div class="tweet">
-      <div class="tweet-header">
-        <img src="assets/images/traders/7.png" alt="TokenAnalyst avatar" class="avatar" />
-        <div class="tweet-user">
-          <span class="handle">&#64;TokenAnalyst</span>
-          <span class="time">1d ago</span>
-        </div>
-        <i class="fa-brands fa-twitter twitter-icon"></i>
-      </div>
-      <p>
-        Best token analysis tool for Solana. The reliability score is pure gold!<i class="fa-solid fa-star" style="color:#facc15;"></i> <!-- gold -->
-      </p>
-      <div class="tweet-footer">
-        <span><i class="fa-solid fa-retweet"></i> 67</span>
-        <span><i class="fa-solid fa-heart"></i> 150</span>
-      </div>
-    </div>
-  </div>
+  </ngx-slick-carousel>
 
 </section>

@@ -42,4 +42,49 @@ export class TokenOverviewComponent {
   get riskScore(): number {
     return this.tokenData?.security?.risk_score || 0;
   }
+
+  // Copy functionality - only adding methods, not changing design
+  copyToClipboard(text: string) {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(() => {
+        console.log('Copied to clipboard!');
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+        this.fallbackCopyToClipboard(text);
+      });
+    } else {
+      this.fallbackCopyToClipboard(text);
+    }
+  }
+
+  private fallbackCopyToClipboard(text: string) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+      document.execCommand('copy');
+      console.log('Copied to clipboard!');
+    } catch (err) {
+      console.error('Fallback copy failed: ', err);
+    }
+    
+    document.body.removeChild(textArea);
+  }
+
+  copyContractAddress() {
+    this.copyToClipboard(this.tokenAddress);
+  }
+
+  copyCreatorAddress() {
+    const creatorAddress = this.tokenData?.basic_info?.creator?.address;
+    if (creatorAddress) {
+      this.copyToClipboard(creatorAddress);
+    }
+  }
 }
