@@ -18,9 +18,11 @@
             [data]="doughnutChartData" 
             [type]="doughnutChartType" 
             [options]="chartOptions" 
-            (chartHover)="onChartHover($event)">
+            (chartHover)="onChartHover($event)"
+            [class.highlighted]="hoveredIndex !== null">
           </canvas>
         </div>
+      
         <div class="chart-container" *ngIf="!isBrowser">
           <div class="chart-placeholder">
             <p>Chart loading...</p>
@@ -47,12 +49,13 @@
             <span class="stat-value">{{ topHundredPercentage | number:'1.1-1' }}%</span>
           </div>
         </div>
-
+     
         <!-- Top 10 Holders Table -->
         <div class="top-holders">
           <h4>Top 10 Holders</h4>
           <table>
-            <tr *ngFor="let holder of topTenHolders; let i = index">
+            <tr *ngFor="let holder of topTenHolders; let i = index" 
+                [class.highlighted]="hoveredIndex === i">
               <td class="number_ranking">{{ i + 1 }}</td>
               <td>{{ holder.address | slice:0:8 }}...{{ holder.address | slice:-8 }}</td>
               <td>{{ holder.percentage | number:'1.2-2' }}%</td>

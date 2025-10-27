@@ -298,3 +298,27 @@
     }
   }
 }
+.btn {
+  background: rgba(108, 14, 220, 0.2);
+  color: #fff;
+  border: 0.5px solid rgba(108, 14, 220, 1);
+  padding: 0.5rem 1rem;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  width: 10rem;
+  display: flex;
+  justify-content: center;
+img {
+  width: 16px;
+  height: 16px;
+}
+
+&:hover {
+  background: #9333ea;
+  transform: translateY(-2px);
+}}
+.top-marg {
+  margin-top: 1rem;
+}

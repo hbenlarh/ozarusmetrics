@@ -1,6 +1,7 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener,OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from "@angular/router";
+import { RouterLink, Router, NavigationEnd } from "@angular/router";
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -15,10 +16,36 @@ export class HeaderComponent {
   isMenuOpen = false;
   isMobile = false;
   logo = "assets/icon/logo.svg";
+  constructor(private router: Router) {}
 
-  @HostListener('window:resize')
   ngOnInit() {
+    // Handle fragment navigation
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        if (event.urlAfterRedirects.includes('#')) {
+          const fragment = event.urlAfterRedirects.split('#')[1];
+          setTimeout(() => {
+            this.scrollToElement(fragment);
+          }, 100);
+        }
+      });
   }
+
+  scrollToElement(elementId: string) {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  }
+  
+
+  // @HostListener('window:resize')
+  // ngOnInit() {
+  // }
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;

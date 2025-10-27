@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { TokenScannerService } from '../../services/token-scanner.service';
 import { TokenScanResponse } from '../../services/token-scan.interface';
 import { TokenDataService } from '../../services/token-data.service';
 
 @Component({
   selector: 'app-search-header',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterLink],
   templateUrl: './search-header.component.html',
   styleUrl: './search-header.component.scss'
 })

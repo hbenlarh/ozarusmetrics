@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-token-overview',
@@ -87,4 +89,36 @@ export class TokenOverviewComponent {
       this.copyToClipboard(creatorAddress);
     }
   }
+  getTweetContent(): string {
+    const name = this.tokenSymbol || 'Unknown';
+    const score = this.riskScore || 0;
+    const formattedScore = new DecimalPipe('en-US').transform(score, '1.2-2');
+    const address = this.tokenAddress || 'N/A';
+
+    const message = Array.isArray(this.tokenData?.security?.message)
+      ? this.tokenData.security.message.slice(3, 5).join('\n')
+      : this.tokenData?.security?.message || 'No additional information available.';
+
+    const url = 'https://ozarusmetrics.com/token-analysis/' + address;
+    const riskInfo = this.getRiskLevel(score);
+
+    return encodeURIComponent(
+      `$${name} - Safety Score: ${formattedScore}% (${riskInfo.text})\n\n${address}\n\n${message}\n....\n\nSee more data at #OZARUS: ${url}`
+    );
+  }
+  // Add the getRiskLevel method
+  getRiskLevel(score: number): { text: string; color: string } {
+    if (score >= 80) return { text: 'Low Risk', color: 'green' };
+    if (score >= 60) return { text: 'Medium Risk', color: 'yellow' };
+    if (score >= 40) return { text: 'High Risk', color: 'orange' };
+    return { text: 'Very High Risk', color: 'red' };
+  }
+
+  // Add the share method
+  shareOnTwitter() {
+    const tweetContent = this.getTweetContent();
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${tweetContent}`;
+    window.open(twitterUrl, '_blank', 'width=550,height=420');
+  }
+
 }

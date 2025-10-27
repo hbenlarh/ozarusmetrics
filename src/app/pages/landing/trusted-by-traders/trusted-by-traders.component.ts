@@ -11,10 +11,10 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 export class TrustedByTradersComponent {
   // Slick slider configuration
   slideConfig = {
-    slidesToShow: 5,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed:500,
     infinite: true,
     arrows: true,
     dots: false,
