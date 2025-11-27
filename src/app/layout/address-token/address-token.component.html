@@ -1,0 +1,9 @@
+<div class="address-token" (click)="copyToClipboard()" [class.copied]="copied">
+  <span class="address-text">{{ displayAddress }}</span>
+  <svg class="copy-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="6" y="6" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+    <path d="M4 2H2C1.44772 2 1 2.44772 1 3V11C1 11.5523 1.44772 12 2 12H4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+  </svg>
+  <span class="copy-feedback" *ngIf="copied">Copied!</span>
+</div>
+

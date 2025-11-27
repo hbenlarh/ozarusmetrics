@@ -2,6 +2,7 @@ import { Component, HostListener,OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, Router, NavigationEnd } from "@angular/router";
 import { filter } from 'rxjs/operators';
+import { AddressTokenComponent } from '../address-token/address-token.component';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,8 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./header.component.scss'],
   imports: [
     CommonModule,
-    RouterLink
+    RouterLink,
+    AddressTokenComponent
 ]
 })
 export class HeaderComponent {
